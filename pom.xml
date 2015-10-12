@@ -212,12 +212,7 @@
 	<dependency>
 	    <groupId>com.dbsys.rs</groupId>
 	    <artifactId>rumkit-security</artifactId>
-	    <version>0.0.4-SNAPSHOT</version>
-	</dependency>
-	<dependency>
-	    <groupId>com.dbsys.rs</groupId>
-	    <artifactId>rumkit-library</artifactId>
-	    <version>0.3.5-SNAPSHOT</version>
+	    <version>0.0.5-SNAPSHOT</version>
 	</dependency>
   </dependencies>
 
