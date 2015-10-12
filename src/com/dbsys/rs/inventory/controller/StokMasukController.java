@@ -1,5 +1,6 @@
 package com.dbsys.rs.inventory.controller;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.PersistenceException;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dbsys.rs.inventory.service.StokService;
 import com.dbsys.rs.lib.ApplicationException;
-import com.dbsys.rs.lib.DateUtil;
 import com.dbsys.rs.lib.ListEntityRestMessage;
 import com.dbsys.rs.lib.RestMessage;
 import com.dbsys.rs.lib.entity.StokMasuk;
@@ -34,8 +34,8 @@ public class StokMasukController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{awal}/to/{akhir}")
 	@ResponseBody
-	public ListEntityRestMessage<StokMasuk> get(@PathVariable String awal, @PathVariable String akhir) throws ApplicationException, PersistenceException {
-		List<StokMasuk> list = stokService.getStokMasuk(DateUtil.getDate(awal), DateUtil.getDate(akhir));
+	public ListEntityRestMessage<StokMasuk> get(@PathVariable Date awal, @PathVariable Date akhir) throws ApplicationException, PersistenceException {
+		List<StokMasuk> list = stokService.getStokMasuk(awal, akhir);
 		return ListEntityRestMessage.createListStokMasuk(list);
 	}
 }
