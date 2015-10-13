@@ -6,6 +6,7 @@ import javax.persistence.PersistenceException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +16,7 @@ import com.dbsys.rs.inventory.service.BarangService;
 import com.dbsys.rs.lib.ApplicationException;
 import com.dbsys.rs.lib.EntityRestMessage;
 import com.dbsys.rs.lib.ListEntityRestMessage;
+import com.dbsys.rs.lib.RestMessage;
 import com.dbsys.rs.lib.entity.BahanHabisPakai;
 import com.dbsys.rs.lib.entity.Barang;
 
@@ -37,5 +39,12 @@ public class BhpController {
 	public ListEntityRestMessage<BahanHabisPakai> getAll() throws ApplicationException, PersistenceException {
 		List<BahanHabisPakai> list = barangService.getBhp();
 		return ListEntityRestMessage.createListBhp(list);
+	}
+	
+	@RequestMapping(method = RequestMethod.PUT, value = "/{id}/jumlah/{jumlah}")
+	@ResponseBody
+	public RestMessage kurang(@PathVariable Long id, @PathVariable Long jumlah) throws ApplicationException, PersistenceException {
+		barangService.kurang(id, jumlah);
+		return RestMessage.success();
 	}
 }

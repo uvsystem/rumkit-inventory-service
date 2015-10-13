@@ -6,6 +6,7 @@ import javax.persistence.PersistenceException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,6 +39,13 @@ public class ObatController {
 	public ListEntityRestMessage<ObatFarmasi> getAll() throws ApplicationException, PersistenceException {
 		List<ObatFarmasi> list = barangService.getObat();
 		return ListEntityRestMessage.createListObat(list);
+	}
+	
+	@RequestMapping(method = RequestMethod.PUT, value = "/{id}/jumlah/{jumlah}")
+	@ResponseBody
+	public RestMessage kurang(@PathVariable Long id, @PathVariable Long jumlah) throws ApplicationException, PersistenceException {
+		barangService.kurang(id, jumlah);
+		return RestMessage.success();
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/test/test")

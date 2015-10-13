@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.dbsys.rs.inventory.repository.BarangRepository;
 import com.dbsys.rs.inventory.service.BarangService;
+import com.dbsys.rs.lib.NumberException;
 import com.dbsys.rs.lib.entity.BahanHabisPakai;
 import com.dbsys.rs.lib.entity.Barang;
 import com.dbsys.rs.lib.entity.ObatFarmasi;
@@ -33,5 +34,21 @@ public class BarangServiceImpl implements BarangService {
 	@Override
 	public List<BahanHabisPakai> getBhp() {
 		return barangRepository.findAllBhp();
+	}
+
+	@Override
+	public void kurang(Long id, Long jumlah) throws NumberException {
+		Barang barang = barangRepository.findOne(id);
+		barang.kurang(jumlah);
+		
+		barangRepository.save(barang);
+	}
+
+	@Override
+	public void tambah(Long id, Long jumlah) {
+		Barang barang = barangRepository.findOne(id);
+		barang.tambah(jumlah);
+		
+		barangRepository.save(barang);
 	}
 }
