@@ -27,7 +27,7 @@ public class StokMasukController {
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/barang/{barang}/jumlah/{jumlah}")
 	@ResponseBody
-	public RestMessage tambah(@PathVariable Long barang, @PathVariable Long jumlah) throws ApplicationException, PersistenceException {
+	public RestMessage simpan(@PathVariable Long barang, @PathVariable Long jumlah) throws ApplicationException, PersistenceException {
 		stokService.simpanStokMasuk(barang, jumlah);
 		return RestMessage.success();
 	}

@@ -41,6 +41,13 @@ public class BhpController {
 		return ListEntityRestMessage.createListBhp(list);
 	}
 	
+	@RequestMapping(method = RequestMethod.GET, value = "/keyword/{keyword}")
+	@ResponseBody
+	public ListEntityRestMessage<BahanHabisPakai> get(@PathVariable String keyword) throws ApplicationException, PersistenceException {
+		List<BahanHabisPakai> list = barangService.getBhp(keyword);
+		return ListEntityRestMessage.createListBhp(list);
+	}
+	
 	@RequestMapping(method = RequestMethod.PUT, value = "/{id}/jumlah/{jumlah}")
 	@ResponseBody
 	public RestMessage kurang(@PathVariable Long id, @PathVariable Long jumlah) throws ApplicationException, PersistenceException {

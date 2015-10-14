@@ -93,4 +93,24 @@ public class ObatControllerTest {
 			.andExpect(jsonPath("$.tipe").value("LIST"))
 			.andExpect(jsonPath("$.message").value("Berhasil"));
 	}
+
+	@Test
+	public void testCariNama() throws Exception {
+		this.mockMvc.perform(
+				get(String.format("/obat/keyword/%s", barang.getNama()))
+				.contentType(MediaType.APPLICATION_JSON)
+			)
+			.andExpect(jsonPath("$.tipe").value("LIST"))
+			.andExpect(jsonPath("$.message").value("Berhasil"));
+	}
+
+	@Test
+	public void testCariKode() throws Exception {
+		this.mockMvc.perform(
+				get(String.format("/obat/keyword/%s", barang.getKode()))
+				.contentType(MediaType.APPLICATION_JSON)
+			)
+			.andExpect(jsonPath("$.tipe").value("LIST"))
+			.andExpect(jsonPath("$.message").value("Berhasil"));
+	}
 }

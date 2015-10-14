@@ -40,6 +40,13 @@ public class ObatController {
 		List<ObatFarmasi> list = barangService.getObat();
 		return ListEntityRestMessage.createListObat(list);
 	}
+
+	@RequestMapping(method = RequestMethod.GET, value="/keyword/{keyword}")
+	@ResponseBody
+	public ListEntityRestMessage<ObatFarmasi> get(@PathVariable String keyword) throws ApplicationException, PersistenceException {
+		List<ObatFarmasi> list = barangService.getObat(keyword);
+		return ListEntityRestMessage.createListObat(list);
+	}
 	
 	@RequestMapping(method = RequestMethod.PUT, value = "/{id}/jumlah/{jumlah}")
 	@ResponseBody

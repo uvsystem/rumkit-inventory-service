@@ -92,4 +92,24 @@ public class BhpControllerTest {
 			.andExpect(jsonPath("$.tipe").value("LIST"))
 			.andExpect(jsonPath("$.message").value("Berhasil"));
 	}
+
+	@Test
+	public void testCariNama() throws Exception {
+		this.mockMvc.perform(
+				get(String.format("/bhp/keyword/%s", barang.getNama()))
+				.contentType(MediaType.APPLICATION_JSON)
+			)
+			.andExpect(jsonPath("$.tipe").value("LIST"))
+			.andExpect(jsonPath("$.message").value("Berhasil"));
+	}
+
+	@Test
+	public void testCariKode() throws Exception {
+		this.mockMvc.perform(
+				get(String.format("/bhp/keyword/%s", barang.getKode()))
+				.contentType(MediaType.APPLICATION_JSON)
+			)
+			.andExpect(jsonPath("$.tipe").value("LIST"))
+			.andExpect(jsonPath("$.message").value("Berhasil"));
+	}
 }

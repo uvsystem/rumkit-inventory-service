@@ -32,8 +32,18 @@ public class BarangServiceImpl implements BarangService {
 	}
 
 	@Override
+	public List<ObatFarmasi> getObat(String keyword) {
+		return barangRepository.findAllObat(keyword);
+	}
+
+	@Override
 	public List<BahanHabisPakai> getBhp() {
 		return barangRepository.findAllBhp();
+	}
+
+	@Override
+	public List<BahanHabisPakai> getBhp(String keyword) {
+		return barangRepository.findAllBhp(keyword);
 	}
 
 	@Override

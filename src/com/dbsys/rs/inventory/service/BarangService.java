@@ -32,11 +32,29 @@ public interface BarangService {
 	List<ObatFarmasi> getObat();
 
 	/**
+	 * Mengambil semua Obat yang sesuai keyword.
+	 * 
+	 * @param keyword
+	 * 
+	 * @return daftar obat
+	 */
+	List<ObatFarmasi> getObat(String keyword);
+
+	/**
 	 * Mengambil semua Bahan Habis Pakai (BHP).
 	 * 
 	 * @return daftar bhp
 	 */
 	List<BahanHabisPakai> getBhp();
+
+	/**
+	 * Mengambil semua Bahan Habis Pakai (BHP) yang sesuai keyword.
+	 * 
+	 * @param keyword
+	 * 
+	 * @return daftar bhp
+	 */
+	List<BahanHabisPakai> getBhp(String keyword);
 
 	/**
 	 * Kurangi jumlah barang.
