@@ -1,6 +1,7 @@
 package com.dbsys.rs.inventory.service;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
 
 import com.dbsys.rs.lib.NumberException;
@@ -18,17 +19,24 @@ public interface StokService {
 	/**
 	 * Simpan stok masuk.
 	 * 
-	 * @param stok
+	 * @param idBarang
+	 * @param jumlah
+	 * @param tanggal
+	 * @param jam
 	 */
-	void simpanStokMasuk(Long idBarang, Long jumlah);
+	void simpanStokMasuk(Long idBarang, Long jumlah, Date tanggal, Time jam);
 
 	/**
 	 * Simpan stok keluar.
 	 * 
-	 * @param stok
-	 * @throws NumberException 
+	 * @param idBarang
+	 * @param jumlah
+	 * @param tanggal
+	 * @param jam
+	 * 
+	 * @throws NumberException jumlah barang tidak mencukui untuk dikurangi
 	 */
-	void simpanStokKeluar(Long idBarang, Long jumlah) throws NumberException;
+	void simpanStokKeluar(Long idBarang, Long jumlah, Date tanggal, Time jam) throws NumberException;
 
 	/**
 	 * Mengambil semua stok masuk sesuai tanggal

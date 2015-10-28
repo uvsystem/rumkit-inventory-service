@@ -23,6 +23,7 @@ import com.dbsys.rs.inventory.service.BarangService;
 import com.dbsys.rs.inventory.service.StokService;
 import com.dbsys.rs.inventory.test.TestConfig;
 import com.dbsys.rs.lib.ApplicationException;
+import com.dbsys.rs.lib.DateUtil;
 import com.dbsys.rs.lib.Tanggungan;
 import com.dbsys.rs.lib.entity.Barang;
 import com.dbsys.rs.lib.entity.ObatFarmasi;
@@ -64,7 +65,7 @@ public class StokKeluarControllerTest {
 		barang.setTanggungan(Tanggungan.BPJS);
 		barang = barangService.save(barang);
 		
-		stokService.simpanStokKeluar(barang.getId(), 10l);
+		stokService.simpanStokKeluar(barang.getId(), 10l, DateUtil.getDate(), DateUtil.getTime());
 		assertEquals(count + 1, stokRepository.count());
 	}
 	

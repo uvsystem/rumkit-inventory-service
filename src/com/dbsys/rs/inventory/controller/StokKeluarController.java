@@ -1,6 +1,7 @@
 package com.dbsys.rs.inventory.controller;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
 
 import javax.persistence.PersistenceException;
@@ -25,10 +26,10 @@ public class StokKeluarController {
 	@Autowired
 	private StokService stokService;
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/barang/{barang}/jumlah/{jumlah}")
+	@RequestMapping(method = RequestMethod.POST, value = "/barang/{barang}/jumlah/{jumlah}/tanggal/{tanggal}/jam/{jam}")
 	@ResponseBody
-	public RestMessage simpan(@PathVariable Long barang, @PathVariable Long jumlah) throws ApplicationException, PersistenceException {
-		stokService.simpanStokKeluar(barang, jumlah);
+	public RestMessage simpan(@PathVariable Long barang, @PathVariable Long jumlah, @PathVariable Date tanggal, @PathVariable Time jam) throws ApplicationException, PersistenceException {
+		stokService.simpanStokKeluar(barang, jumlah, tanggal, jam);
 		return RestMessage.success();
 	}
 
