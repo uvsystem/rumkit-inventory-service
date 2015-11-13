@@ -24,4 +24,6 @@ public interface BarangRepository extends JpaRepository<Barang, Long> {
 	@Query("FROM BahanHabisPakai bhp WHERE bhp.nama LIKE %:keyword% OR bhp.kode LIKE %:keyword%")
 	List<BahanHabisPakai> findAllBhp(@Param("keyword") String keyword);
 
+	List<Barang> findByNamaContainingOrKodeContaining(String nama, String kode);
+
 }
