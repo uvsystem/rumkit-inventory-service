@@ -112,7 +112,7 @@ public class StokKembaliControllerTest {
 				post("/stok")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content("{"
-						+ "\"name\": \"KEMBALI\","
+						+ "\"tipeStok\": \"KEMBALI\","
 						+ "\"jumlah\": \"10\","
 						+ "\"barang\": {"
 						+ "\"harga\": \"20000\","
@@ -122,7 +122,7 @@ public class StokKembaliControllerTest {
 						+ "\"satuan\":\"satuan\","
 						+ "\"penanggung\":\"UMUM\","
 						+ "\"keterangan\":\"keterangan\","
-						+ "\"name\": \"OBAT\""
+						+ "\"tipeBarang\": \"OBAT\""
 						+ "},"
 						+ "\"pasien\": {"
 						+ "\"penduduk\": {"
@@ -143,7 +143,8 @@ public class StokKembaliControllerTest {
 						+ "}"
 						+ "}")
 			)
-			.andExpect(jsonPath("$.tipe").value("SUCCESS"))
+			.andExpect(jsonPath("$.tipe").value("ENTITY"))
+			.andExpect(jsonPath("$.model.tipe").value("KEMBALI"))
 			.andExpect(jsonPath("$.message").value("Berhasil"));
 		
 		assertEquals(count + 2, stokRepository.count());

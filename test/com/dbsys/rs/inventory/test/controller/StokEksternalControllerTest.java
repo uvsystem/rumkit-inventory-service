@@ -94,7 +94,7 @@ public class StokEksternalControllerTest {
 				.content("{"
 						+ "\"jumlah\": \"10\","
 						+ "\"jenis\": \"MASUK\","
-						+ "\"name\": \"EKSTERNAL\","
+						+ "\"tipeStok\": \"EKSTERNAL\","
 						+ "\"barang\": {"
 						+ "\"harga\": \"20000\","
 						+ "\"jumlah\": \"100\","
@@ -102,11 +102,12 @@ public class StokEksternalControllerTest {
 						+ "\"nama\":\"BHP 2\","
 						+ "\"satuan\":\"satuan\","
 						+ "\"penanggung\":\"UMUM\","
-						+ "\"name\": \"BHP\""
+						+ "\"tipeBarang\": \"BHP\""
 						+ "}"
 						+ "}")
 			)
-			.andExpect(jsonPath("$.tipe").value("SUCCESS"))
+			.andExpect(jsonPath("$.tipe").value("ENTITY"))
+			.andExpect(jsonPath("$.model.tipe").value("EKSTERNAL"))
 			.andExpect(jsonPath("$.message").value("Berhasil"));
 		
 		assertEquals(count + 3, stokRepository.count());
@@ -129,7 +130,7 @@ public class StokEksternalControllerTest {
 				post("/stok")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content("{"
-						+ "\"name\": \"EKSTERNAL\","
+						+ "\"tipeStok\": \"EKSTERNAL\","
 						+ "\"jumlah\": \"2\","
 						+ "\"jenis\": \"KELUAR\","
 						+ "\"barang\": {"
@@ -140,11 +141,12 @@ public class StokEksternalControllerTest {
 						+ "\"satuan\":\"satuan\","
 						+ "\"penanggung\":\"UMUM\","
 						+ "\"keterangan\":\"keterangan\","
-						+ "\"name\": \"OBAT\""
+						+ "\"tipeBarang\": \"OBAT\""
 						+ "}"
 						+ "}")
 			)
-			.andExpect(jsonPath("$.tipe").value("SUCCESS"))
+			.andExpect(jsonPath("$.tipe").value("ENTITY"))
+			.andExpect(jsonPath("$.model.tipe").value("EKSTERNAL"))
 			.andExpect(jsonPath("$.message").value("Berhasil"));
 		
 		assertEquals(count + 3, stokRepository.count());
@@ -156,7 +158,7 @@ public class StokEksternalControllerTest {
 				post("/stok")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content("{"
-						+ "\"name\": \"EKSTERNAL\","
+						+ "\"tipeStok\": \"EKSTERNAL\","
 						+ "\"jumlah\": \"10\","
 						+ "\"jenis\": \"KELUAR\","
 						+ "\"barang\": {"
@@ -167,7 +169,7 @@ public class StokEksternalControllerTest {
 						+ "\"satuan\":\"satuan\","
 						+ "\"penanggung\":\"UMUM\","
 						+ "\"keterangan\":\"keterangan\","
-						+ "\"name\": \"OBAT\""
+						+ "\"tipeBarang\": \"OBAT\""
 						+ "}"
 						+ "}")
 			)

@@ -95,7 +95,7 @@ public class StokInternalControllerTest {
 				post("/stok")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content("{"
-						+ "\"name\": \"INTERNAL\","
+						+ "\"tipeStok\": \"INTERNAL\","
 						+ "\"jumlah\": \"10\","
 						+ "\"barang\": {"
 						+ "\"harga\": \"20000\","
@@ -105,7 +105,7 @@ public class StokInternalControllerTest {
 						+ "\"satuan\":\"satuan\","
 						+ "\"penanggung\":\"UMUM\","
 						+ "\"keterangan\":\"keterangan\","
-						+ "\"name\": \"OBAT\""
+						+ "\"tipeBarang\": \"OBAT\""
 						+ "},"
 						+ "\"unit\": {"
 						+ "\"nama\": \"Unit2\","
@@ -114,7 +114,8 @@ public class StokInternalControllerTest {
 						+ "}"
 						+ "}")
 			)
-			.andExpect(jsonPath("$.tipe").value("SUCCESS"))
+			.andExpect(jsonPath("$.tipe").value("ENTITY"))
+			.andExpect(jsonPath("$.model.tipe").value("INTERNAL"))
 			.andExpect(jsonPath("$.message").value("Berhasil"));
 		
 		assertEquals(count + 2, stokRepository.count());
@@ -126,7 +127,7 @@ public class StokInternalControllerTest {
 				post("/stok")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content("{"
-						+ "\"name\": \"INTERNAL\","
+						+ "\"tipeStok\": \"INTERNAL\","
 						+ "\"jumlah\": \"11\","
 						+ "\"barang\": {"
 						+ "\"harga\": \"20000\","
@@ -136,7 +137,7 @@ public class StokInternalControllerTest {
 						+ "\"satuan\":\"satuan\","
 						+ "\"penanggung\":\"UMUM\","
 						+ "\"keterangan\":\"keterangan\","
-						+ "\"name\": \"OBAT\""
+						+ "\"tipeBarang\": \"OBAT\""
 						+ "},"
 						+ "\"unit\": {"
 						+ "\"nama\": \"Unit2\","

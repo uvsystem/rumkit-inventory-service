@@ -76,10 +76,11 @@ public class BhpControllerTest {
 						+ "\"nama\":\"BHP 2\","
 						+ "\"satuan\":\"satuan\","
 						+ "\"penanggung\":\"UMUM\","
-						+ "\"name\": \"BHP\""
+						+ "\"tipeBarang\": \"BHP\""
 						+ "}")
 			)
 			.andExpect(jsonPath("$.tipe").value("ENTITY"))
+			.andExpect(jsonPath("$.model.tipe").value("BHP"))
 			.andExpect(jsonPath("$.message").value("Berhasil"));
 		
 		assertEquals(count + 2, barangRepository.count());

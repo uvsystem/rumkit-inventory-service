@@ -76,9 +76,10 @@ public class ObatControllerTest {
 						+ "\"satuan\":\"satuan\","
 						+ "\"penanggung\":\"UMUM\","
 						+ "\"keterangan\":\"keterangan\","
-						+ "\"name\": \"OBAT\"}")
+						+ "\"tipeBarang\": \"OBAT\"}")
 			)
 			.andExpect(jsonPath("$.tipe").value("ENTITY"))
+			.andExpect(jsonPath("$.model.tipe").value("OBAT"))
 			.andExpect(jsonPath("$.message").value("Berhasil"));
 		
 		assertEquals(count + 2, barangRepository.count());

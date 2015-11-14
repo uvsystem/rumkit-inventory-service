@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dbsys.rs.inventory.service.StokService;
 import com.dbsys.rs.lib.ApplicationException;
+import com.dbsys.rs.lib.EntityRestMessage;
 import com.dbsys.rs.lib.ListEntityRestMessage;
-import com.dbsys.rs.lib.RestMessage;
 import com.dbsys.rs.lib.entity.Stok;
 
 @Controller
@@ -28,9 +28,9 @@ public class StokController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseBody
-	public RestMessage simpan(@RequestBody Stok stok) throws ApplicationException, PersistenceException {
-		stokService.simpan(stok);
-		return RestMessage.success();
+	public EntityRestMessage<Stok> simpan(@RequestBody Stok stok) throws ApplicationException, PersistenceException {
+		stok = stokService.simpan(stok);
+		return EntityRestMessage.createStok(stok);
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/masuk/{awal}/to/{akhir}")
