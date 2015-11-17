@@ -79,4 +79,12 @@ public interface StokService {
 	 * @return daftar stok
 	 */
 	List<Stok> getStokKembali(Long pasien);
+
+	/**
+	 * Mengambil semua stok yang kembali dari berdasarkan nomor.
+	 * 
+	 * @param pasien
+	 * @return daftar stok
+	 */
+	List<Stok> getStokKembali(String nomor);
 }

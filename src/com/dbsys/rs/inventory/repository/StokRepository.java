@@ -30,4 +30,7 @@ public interface StokRepository extends JpaRepository<Stok, Long> {
 	@Query("FROM StokKembali stok WHERE stok.pasien.id = :pasien")
 	List<StokKembali> findAllStokKembali(@Param("pasien") Long idPasien);
 
+	@Query("FROM StokKembali stok WHERE stok.nomor = :nomor")
+	List<StokKembali> findAllStokKembali(@Param("nomor") String nomor);
+
 }

@@ -111,4 +111,14 @@ public class StokServiceImpl implements StokService {
 		
 		return listStok;
 	}
+
+	@Override
+	public List<Stok> getStokKembali(String nomor) {
+		List<StokKembali> list = stokRepository.findAllStokKembali(nomor);
+		List<Stok> listStok = new ArrayList<>();
+		for (StokKembali stok : list)
+			listStok.add(stok);
+		
+		return listStok;
+	}
 }

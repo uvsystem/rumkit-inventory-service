@@ -54,6 +54,13 @@ public class StokController {
 		return ListEntityRestMessage.createListStok(list);
 	}
 
+	@RequestMapping(method = RequestMethod.GET, value = "/nomor/{nomor}")
+	@ResponseBody
+	public ListEntityRestMessage<Stok> getStokKembali(@PathVariable String nomor) throws ApplicationException, PersistenceException {
+		List<Stok> list = stokService.getStokKembali(nomor);
+		return ListEntityRestMessage.createListStok(list);
+	}
+
 	@RequestMapping(method = RequestMethod.GET, value = "/{awal}/to/{akhir}/pasien")
 	@ResponseBody
 	public ListEntityRestMessage<Stok> getStokKembali(@PathVariable Date awal, @PathVariable Date akhir) throws ApplicationException, PersistenceException {
