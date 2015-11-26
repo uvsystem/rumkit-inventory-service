@@ -103,4 +103,11 @@ public class BarangController {
 		barangService.tambah(id, jumlah);
 		return RestMessage.success();
 	}
+	
+	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+	@ResponseBody
+	public RestMessage hapus(@PathVariable Long id) throws ApplicationException, PersistenceException {
+		barangService.hapus(id);
+		return RestMessage.success();
+	}
 }

@@ -77,4 +77,6 @@ public interface BarangService {
 
 	List<Barang> getBarang(String keyword);
 
+	void hapus(Long id);
+
 }

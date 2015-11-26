@@ -71,4 +71,9 @@ public class BarangServiceImpl implements BarangService {
 	public List<Barang> getBarang(String keyword) {
 		return barangRepository.findByNamaContainingOrKodeContaining(keyword, keyword);
 	}
+
+	@Override
+	public void hapus(Long id) {
+		barangRepository.delete(id);
+	}
 }
