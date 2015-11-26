@@ -73,6 +73,7 @@ public class BarangServiceImpl implements BarangService {
 	}
 
 	@Override
+	@Transactional(readOnly = false)
 	public void hapus(Long id) {
 		barangRepository.delete(id);
 	}
