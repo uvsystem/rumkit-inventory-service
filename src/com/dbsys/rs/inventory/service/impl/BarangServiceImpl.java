@@ -61,4 +61,20 @@ public class BarangServiceImpl implements BarangService {
 		
 		barangRepository.save(barang);
 	}
+
+	@Override
+	public List<Barang> getBarang() {
+		return barangRepository.findAll();
+	}
+
+	@Override
+	public List<Barang> getBarang(String keyword) {
+		return barangRepository.findByNamaContainingOrKodeContaining(keyword, keyword);
+	}
+
+	@Override
+	@Transactional(readOnly = false)
+	public void hapus(Long id) {
+		barangRepository.delete(id);
+	}
 }

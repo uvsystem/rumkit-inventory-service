@@ -73,4 +73,10 @@ public interface BarangService {
 	 */
 	void tambah(Long id, Long jumlah);
 
+	List<Barang> getBarang();
+
+	List<Barang> getBarang(String keyword);
+
+	void hapus(Long id);
+
 }

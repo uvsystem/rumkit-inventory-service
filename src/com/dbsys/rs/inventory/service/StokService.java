@@ -1,12 +1,10 @@
 package com.dbsys.rs.inventory.service;
 
 import java.sql.Date;
-import java.sql.Time;
 import java.util.List;
 
-import com.dbsys.rs.lib.NumberException;
-import com.dbsys.rs.lib.entity.StokKeluar;
-import com.dbsys.rs.lib.entity.StokMasuk;
+import com.dbsys.rs.lib.ApplicationException;
+import com.dbsys.rs.lib.entity.Stok;
 
 /**
  * Interface untuk mengelola data stok.
@@ -17,45 +15,76 @@ import com.dbsys.rs.lib.entity.StokMasuk;
 public interface StokService {
 
 	/**
-	 * Simpan stok masuk.
+	 * Simpan stok.
 	 * 
-	 * @param idBarang
-	 * @param jumlah
-	 * @param tanggal
-	 * @param jam
+	 * @param stok
+	 * @return stok
+	 * @throws ApplicationException 
 	 */
-	void simpanStokMasuk(Long idBarang, Long jumlah, Date tanggal, Time jam);
+	Stok simpan(Stok stok) throws ApplicationException;
 
 	/**
-	 * Simpan stok keluar.
-	 * 
-	 * @param idBarang
-	 * @param jumlah
-	 * @param tanggal
-	 * @param jam
-	 * 
-	 * @throws NumberException jumlah barang tidak mencukui untuk dikurangi
-	 */
-	void simpanStokKeluar(Long idBarang, Long jumlah, Date tanggal, Time jam) throws NumberException;
-
-	/**
-	 * Mengambil semua stok masuk sesuai tanggal
+	 * Mengambil semua stok masuk sesuai tanggal.
 	 * 
 	 * @param awal
 	 * @param akhir
 	 * 
-	 * @return daftar stok masuk
+	 * @return daftar stok
 	 */
-	List<StokMasuk> getStokMasuk(Date awal, Date akhir);
+	List<Stok> getStokMasuk(Date awal, Date akhir);
 
 	/**
-	 * Mengambil semua stok keluar sesuai tanggal
+	 * Mengambil semua stok masuk sesuai tanggal.
 	 * 
 	 * @param awal
 	 * @param akhir
 	 * 
-	 * @return daftar stok keluar
+	 * @return daftar stok
 	 */
-	List<StokKeluar> getStokKeluar(Date awal, Date akhir);
+	List<Stok> getStokKeluar(Date awal, Date akhir);
 
+	/**
+	 * Mengambil semua stok yang keluar ke unit.
+	 * 
+	 * @param awal
+	 * @param akhir
+	 * 
+	 * @return daftar stok
+	 */
+	List<Stok> getStokInternal(Date awal, Date akhir);
+
+	/**
+	 * Mengambil semua stok yang keluar ke unit.
+	 * 
+	 * @param awal
+	 * @param akhir
+	 * @param idUnit
+	 * 
+	 * @return daftar stok
+	 */
+	List<Stok> getStokInternal(Date awal, Date akhir, Long idUnit);
+
+	/**
+	 * Mengambil semua stok yang kembali dari pasien.
+	 * @param awal
+	 * @param akhir
+	 * @return daftar stok
+	 */
+	List<Stok> getStokKembali(Date awal, Date akhir);
+
+	/**
+	 * Mengambil semua stok yang kembali dari pasien.
+	 * 
+	 * @param pasien
+	 * @return daftar stok
+	 */
+	List<Stok> getStokKembali(Long pasien);
+
+	/**
+	 * Mengambil semua stok yang kembali dari berdasarkan nomor.
+	 * 
+	 * @param pasien
+	 * @return daftar stok
+	 */
+	List<Stok> getStokKembali(String nomor);
 }
