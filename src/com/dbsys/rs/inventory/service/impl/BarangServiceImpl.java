@@ -8,10 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.dbsys.rs.inventory.repository.BarangRepository;
 import com.dbsys.rs.inventory.service.BarangService;
-import com.dbsys.rs.lib.NumberException;
-import com.dbsys.rs.lib.entity.BahanHabisPakai;
-import com.dbsys.rs.lib.entity.Barang;
-import com.dbsys.rs.lib.entity.ObatFarmasi;
+import com.dbsys.rs.inventory.NumberException;
+import com.dbsys.rs.inventory.entity.BahanHabisPakai;
+import com.dbsys.rs.inventory.entity.Barang;
+import com.dbsys.rs.inventory.entity.ObatFarmasi;
 
 @Service
 @Transactional(readOnly = true)

@@ -3,8 +3,8 @@ package com.dbsys.rs.inventory.service;
 import java.sql.Date;
 import java.util.List;
 
-import com.dbsys.rs.lib.ApplicationException;
-import com.dbsys.rs.lib.entity.Stok;
+import com.dbsys.rs.ApplicationException;
+import com.dbsys.rs.inventory.entity.StokKembali;
 
 /**
  * Interface untuk mengelola data stok.
@@ -21,48 +21,7 @@ public interface StokService {
 	 * @return stok
 	 * @throws ApplicationException 
 	 */
-	Stok simpan(Stok stok) throws ApplicationException;
-
-	/**
-	 * Mengambil semua stok masuk sesuai tanggal.
-	 * 
-	 * @param awal
-	 * @param akhir
-	 * 
-	 * @return daftar stok
-	 */
-	List<Stok> getStokMasuk(Date awal, Date akhir);
-
-	/**
-	 * Mengambil semua stok masuk sesuai tanggal.
-	 * 
-	 * @param awal
-	 * @param akhir
-	 * 
-	 * @return daftar stok
-	 */
-	List<Stok> getStokKeluar(Date awal, Date akhir);
-
-	/**
-	 * Mengambil semua stok yang keluar ke unit.
-	 * 
-	 * @param awal
-	 * @param akhir
-	 * 
-	 * @return daftar stok
-	 */
-	List<Stok> getStokInternal(Date awal, Date akhir);
-
-	/**
-	 * Mengambil semua stok yang keluar ke unit.
-	 * 
-	 * @param awal
-	 * @param akhir
-	 * @param idUnit
-	 * 
-	 * @return daftar stok
-	 */
-	List<Stok> getStokInternal(Date awal, Date akhir, Long idUnit);
+	StokKembali simpan(StokKembali stok) throws ApplicationException;
 
 	/**
 	 * Mengambil semua stok yang kembali dari pasien.
@@ -70,7 +29,7 @@ public interface StokService {
 	 * @param akhir
 	 * @return daftar stok
 	 */
-	List<Stok> getStokKembali(Date awal, Date akhir);
+	List<StokKembali> getStokKembali(Date awal, Date akhir);
 
 	/**
 	 * Mengambil semua stok yang kembali dari pasien.
@@ -78,7 +37,7 @@ public interface StokService {
 	 * @param pasien
 	 * @return daftar stok
 	 */
-	List<Stok> getStokKembali(Long pasien);
+	List<StokKembali> getStokKembali(Long pasien);
 
 	/**
 	 * Mengambil semua stok yang kembali dari berdasarkan nomor.
@@ -86,5 +45,6 @@ public interface StokService {
 	 * @param pasien
 	 * @return daftar stok
 	 */
-	List<Stok> getStokKembali(String nomor);
+	List<StokKembali> getStokKembali(String nomor);
+
 }

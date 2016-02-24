@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dbsys.rs.inventory.service.BarangService;
-import com.dbsys.rs.lib.ApplicationException;
-import com.dbsys.rs.lib.EntityRestMessage;
-import com.dbsys.rs.lib.ListEntityRestMessage;
-import com.dbsys.rs.lib.RestMessage;
-import com.dbsys.rs.lib.entity.BahanHabisPakai;
-import com.dbsys.rs.lib.entity.Barang;
-import com.dbsys.rs.lib.entity.ObatFarmasi;
+import com.dbsys.rs.ApplicationException;
+import com.dbsys.rs.EntityRestMessage;
+import com.dbsys.rs.ListEntityRestMessage;
+import com.dbsys.rs.RestMessage;
+import com.dbsys.rs.inventory.entity.BahanHabisPakai;
+import com.dbsys.rs.inventory.entity.Barang;
+import com.dbsys.rs.inventory.entity.ObatFarmasi;
 
 @Controller
 @RequestMapping("/barang")
@@ -33,14 +33,14 @@ public class BarangController {
 	@ResponseBody
 	public EntityRestMessage<Barang> save(@RequestBody Barang barang) throws ApplicationException, PersistenceException {
 		barang = barangService.save(barang);
-		return EntityRestMessage.createBarang(barang);
+		return new EntityRestMessage<Barang>(barang);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public ListEntityRestMessage<Barang> getAll() throws ApplicationException, PersistenceException {
 		List<Barang> list = barangService.getBarang();
-		return ListEntityRestMessage.createListBarang(list);
+		return new ListEntityRestMessage<Barang>(list);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/class/{class}")
@@ -60,14 +60,14 @@ public class BarangController {
 		for (Object object : list)
 			listBarang.add((Barang) object);
 		
-		return ListEntityRestMessage.createListBarang(listBarang);
+		return new ListEntityRestMessage<Barang>(listBarang);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/keyword/{keyword}")
 	@ResponseBody
 	public ListEntityRestMessage<Barang> get(@PathVariable String keyword) throws ApplicationException, PersistenceException {
 		List<Barang> list = barangService.getBarang(keyword);
-		return ListEntityRestMessage.createListBarang(list);
+		return new ListEntityRestMessage<Barang>(list);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/keyword/{keyword}/class/{class}")
@@ -87,7 +87,7 @@ public class BarangController {
 		for (Object object : list)
 			listBarang.add((Barang) object);
 		
-		return ListEntityRestMessage.createListBarang(listBarang);
+		return new ListEntityRestMessage<Barang>(listBarang);
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, value = "/kurang/{id}/jumlah/{jumlah}")

@@ -6,9 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.dbsys.rs.lib.entity.BahanHabisPakai;
-import com.dbsys.rs.lib.entity.Barang;
-import com.dbsys.rs.lib.entity.ObatFarmasi;
+import com.dbsys.rs.inventory.entity.BahanHabisPakai;
+import com.dbsys.rs.inventory.entity.Barang;
+import com.dbsys.rs.inventory.entity.ObatFarmasi;
 
 public interface BarangRepository extends JpaRepository<Barang, Long> {
 

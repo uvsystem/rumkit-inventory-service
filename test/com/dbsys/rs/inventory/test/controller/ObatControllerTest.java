@@ -22,9 +22,9 @@ import org.springframework.web.context.WebApplicationContext;
 import com.dbsys.rs.inventory.repository.BarangRepository;
 import com.dbsys.rs.inventory.service.BarangService;
 import com.dbsys.rs.inventory.test.TestConfig;
-import com.dbsys.rs.lib.Penanggung;
-import com.dbsys.rs.lib.entity.Barang;
-import com.dbsys.rs.lib.entity.ObatFarmasi;
+import com.dbsys.rs.Penanggung;
+import com.dbsys.rs.inventory.entity.Barang;
+import com.dbsys.rs.inventory.entity.ObatFarmasi;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration

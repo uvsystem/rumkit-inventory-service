@@ -23,18 +23,18 @@ import com.dbsys.rs.inventory.repository.StokRepository;
 import com.dbsys.rs.inventory.service.BarangService;
 import com.dbsys.rs.inventory.service.StokService;
 import com.dbsys.rs.inventory.test.TestConfig;
-import com.dbsys.rs.lib.ApplicationException;
-import com.dbsys.rs.lib.DateUtil;
-import com.dbsys.rs.lib.Penanggung;
-import com.dbsys.rs.lib.entity.Barang;
-import com.dbsys.rs.lib.entity.ObatFarmasi;
-import com.dbsys.rs.lib.entity.Pasien;
-import com.dbsys.rs.lib.entity.Pasien.Perawatan;
-import com.dbsys.rs.lib.entity.Penduduk;
-import com.dbsys.rs.lib.entity.Pasien.StatusPasien;
-import com.dbsys.rs.lib.entity.Penduduk.Kelamin;
-import com.dbsys.rs.lib.entity.Stok.JenisStok;
-import com.dbsys.rs.lib.entity.StokKembali;
+import com.dbsys.rs.ApplicationException;
+import com.dbsys.rs.DateUtil;
+import com.dbsys.rs.Penanggung;
+import com.dbsys.rs.inventory.entity.Barang;
+import com.dbsys.rs.inventory.entity.ObatFarmasi;
+import com.dbsys.rs.inventory.entity.Pasien;
+import com.dbsys.rs.inventory.entity.Pasien.Pendaftaran;
+import com.dbsys.rs.inventory.entity.Pasien.Perawatan;
+import com.dbsys.rs.inventory.entity.Penduduk;
+import com.dbsys.rs.inventory.entity.Pasien.StatusPasien;
+import com.dbsys.rs.inventory.entity.Penduduk.Kelamin;
+import com.dbsys.rs.inventory.entity.StokKembali;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -70,7 +70,7 @@ public class StokKembaliControllerTest {
 		barang = new ObatFarmasi("Keterangan");
 		barang.setHarga(10000l);
 		barang.setJumlah(10L);
-		barang.setKode("BHP01");
+		barang.setKode("BHP blum ada");
 		barang.setNama("Bahan Habis Pakai");
 		barang.setSatuan("Satuan");
 		barang.setPenanggung(Penanggung.BPJS);
@@ -84,7 +84,7 @@ public class StokKembaliControllerTest {
 		penduduk.setNik("Nik xxx");
 		penduduk.setTanggalLahir(DateUtil.getDate());
 		penduduk.setTelepon("Telepon");
-		penduduk.generateKode();
+		penduduk.setKode("PDK Blum Ada");
 
 		pasien = new Pasien();
 		pasien.setPenduduk(penduduk);
@@ -92,15 +92,15 @@ public class StokKembaliControllerTest {
 		pasien.setStatus(StatusPasien.PERAWATAN);
 		pasien.setTipePerawatan(Perawatan.RAWAT_JALAN);
 		pasien.setTanggalMasuk(DateUtil.getDate());
-		pasien.generateKode();
+		pasien.setPendaftaran(Pendaftaran.LOKET);
+		pasien.setKode("PSN Blum Ada");
 		pasien = pasienRepository.save(pasien);
 
 		StokKembali stok = new StokKembali();
 		stok.setBarang(barang);
 		stok.setJumlah(2L);
-		stok.setJenis(JenisStok.MASUK);
 		stok.setPasien(pasien);
-		stok = (StokKembali) stokService.simpan(stok);
+		stok = stokService.simpan(stok);
 		
 		assertEquals(count + 1, stokRepository.count());
 		assertEquals(new Long(12), stok.getBarang().getJumlah());
@@ -112,7 +112,6 @@ public class StokKembaliControllerTest {
 				post("/stok")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content("{"
-						+ "\"tipeStok\": \"KEMBALI\","
 						+ "\"jumlah\": \"10\","
 						+ "\"barang\": {"
 						+ "\"harga\": \"20000\","
@@ -139,12 +138,12 @@ public class StokKembaliControllerTest {
 						+ "\"status\": \"PERAWATAN\","
 						+ "\"tipePerawatan\": \"RAWAT_JALAN\","
 						+ "\"tanggalMasuk\": \"2015-10-1\","
-						+ "\"kode\": \"KODE\""
+						+ "\"kode\": \"KODE\","
+						+ "\"pendaftaran\": \"LOKET\""
 						+ "}"
 						+ "}")
 			)
 			.andExpect(jsonPath("$.tipe").value("ENTITY"))
-			.andExpect(jsonPath("$.model.tipe").value("KEMBALI"))
 			.andExpect(jsonPath("$.message").value("Berhasil"));
 		
 		assertEquals(count + 2, stokRepository.count());
@@ -153,7 +152,7 @@ public class StokKembaliControllerTest {
 	@Test
 	public void testGet() throws Exception {
 		this.mockMvc.perform(
-				get(String.format("/stok/%s/to/%s/pasien", "2015-10-1", "2015-11-30"))
+				get(String.format("/stok/%s/to/%s/pasien", "2016-2-1", "2016-2-29"))
 				.contentType(MediaType.APPLICATION_JSON)
 						
 			)

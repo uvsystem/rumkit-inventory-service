@@ -2,10 +2,10 @@ package com.dbsys.rs.inventory.service;
 
 import java.util.List;
 
-import com.dbsys.rs.lib.NumberException;
-import com.dbsys.rs.lib.entity.BahanHabisPakai;
-import com.dbsys.rs.lib.entity.Barang;
-import com.dbsys.rs.lib.entity.ObatFarmasi;
+import com.dbsys.rs.inventory.NumberException;
+import com.dbsys.rs.inventory.entity.BahanHabisPakai;
+import com.dbsys.rs.inventory.entity.Barang;
+import com.dbsys.rs.inventory.entity.ObatFarmasi;
 
 /**
  * Interface untuk mengelola data barang.
