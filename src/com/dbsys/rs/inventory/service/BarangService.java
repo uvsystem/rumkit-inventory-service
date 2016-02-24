@@ -2,7 +2,7 @@ package com.dbsys.rs.inventory.service;
 
 import java.util.List;
 
-import com.dbsys.rs.inventory.NumberException;
+import com.dbsys.rs.NumberException;
 import com.dbsys.rs.inventory.entity.BahanHabisPakai;
 import com.dbsys.rs.inventory.entity.Barang;
 import com.dbsys.rs.inventory.entity.ObatFarmasi;

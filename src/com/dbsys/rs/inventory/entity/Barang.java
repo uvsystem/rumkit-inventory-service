@@ -13,7 +13,7 @@ import javax.persistence.Transient;
 
 import com.dbsys.rs.CodedEntity;
 import com.dbsys.rs.DateUtil;
-import com.dbsys.rs.inventory.NumberException;
+import com.dbsys.rs.NumberException;
 import com.dbsys.rs.Tanggungan;
 import com.dbsys.rs.Penanggung;
 import com.fasterxml.jackson.annotation.JsonSubTypes;

@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dbsys.rs.NumberException;
 import com.dbsys.rs.inventory.repository.BarangRepository;
 import com.dbsys.rs.inventory.service.BarangService;
-import com.dbsys.rs.inventory.NumberException;
 import com.dbsys.rs.inventory.entity.BahanHabisPakai;
 import com.dbsys.rs.inventory.entity.Barang;
 import com.dbsys.rs.inventory.entity.ObatFarmasi;
