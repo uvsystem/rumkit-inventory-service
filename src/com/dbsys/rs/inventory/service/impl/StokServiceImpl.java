@@ -14,6 +14,7 @@ import com.dbsys.rs.inventory.service.StokService;
 import com.dbsys.rs.ApplicationException;
 import com.dbsys.rs.DateUtil;
 import com.dbsys.rs.inventory.entity.Barang;
+import com.dbsys.rs.inventory.entity.Stok;
 import com.dbsys.rs.inventory.entity.StokKembali;
 
 @Service
@@ -29,7 +30,7 @@ public class StokServiceImpl implements StokService {
 
 	@Override
 	@Transactional(readOnly = false)
-	public StokKembali simpan(StokKembali stok) throws ApplicationException {
+	public Stok simpan(Stok stok) throws ApplicationException {
 		if (stok.getTanggal() == null)
 			stok.setTanggal(DateUtil.getDate());
 		if (stok.getJam() == null)
@@ -61,4 +62,9 @@ public class StokServiceImpl implements StokService {
 		return list;
 	}
 
+	@Override
+	public List<Stok> getStokMasuk(Date awal, Date akhir) {
+		List<Stok> list = stokRepository.findAllStokMasuk(awal, akhir);
+		return list;
+	}
 }

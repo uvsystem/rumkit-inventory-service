@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import com.dbsys.rs.ApplicationException;
+import com.dbsys.rs.inventory.entity.Stok;
 import com.dbsys.rs.inventory.entity.StokKembali;
 
 /**
@@ -21,7 +22,7 @@ public interface StokService {
 	 * @return stok
 	 * @throws ApplicationException 
 	 */
-	StokKembali simpan(StokKembali stok) throws ApplicationException;
+	Stok simpan(Stok stok) throws ApplicationException;
 
 	/**
 	 * Mengambil semua stok yang kembali dari pasien.
@@ -46,5 +47,7 @@ public interface StokService {
 	 * @return daftar stok
 	 */
 	List<StokKembali> getStokKembali(String nomor);
+
+	List<Stok> getStokMasuk(Date awal, Date akhir);
 
 }

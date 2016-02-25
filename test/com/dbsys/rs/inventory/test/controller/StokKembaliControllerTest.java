@@ -34,7 +34,7 @@ import com.dbsys.rs.inventory.entity.Pasien.Perawatan;
 import com.dbsys.rs.inventory.entity.Penduduk;
 import com.dbsys.rs.inventory.entity.Pasien.StatusPasien;
 import com.dbsys.rs.inventory.entity.Penduduk.Kelamin;
-import com.dbsys.rs.inventory.entity.StokKembali;
+import com.dbsys.rs.inventory.entity.Stok;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -96,10 +96,9 @@ public class StokKembaliControllerTest {
 		pasien.setKode("PSN Blum Ada");
 		pasien = pasienRepository.save(pasien);
 
-		StokKembali stok = new StokKembali();
+		Stok stok = new Stok();
 		stok.setBarang(barang);
 		stok.setJumlah(2L);
-		stok.setPasien(pasien);
 		stok = stokService.simpan(stok);
 		
 		assertEquals(count + 1, stokRepository.count());
@@ -152,7 +151,7 @@ public class StokKembaliControllerTest {
 	@Test
 	public void testGet() throws Exception {
 		this.mockMvc.perform(
-				get(String.format("/stok/%s/to/%s/pasien", "2016-2-1", "2016-2-29"))
+				get(String.format("/stok/%s/to/%s", "2016-2-1", "2016-2-29"))
 				.contentType(MediaType.APPLICATION_JSON)
 						
 			)

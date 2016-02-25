@@ -1,16 +1,11 @@
 package com.dbsys.rs.inventory.entity;
 
-import java.sql.Date;
-import java.sql.Time;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.dbsys.rs.CodedEntity;
@@ -18,67 +13,14 @@ import com.dbsys.rs.DateUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "stok")
-public class StokKembali implements CodedEntity {
-	
-	private Long id;
-	private Long jumlah;
-	private Date tanggal;
-	private Time jam;
-	private Barang barang;
+@DiscriminatorValue("STOK_KEMBALI")
+public class StokKembali extends Stok implements CodedEntity {
 
 	private Pasien pasien;
 	private String nomor;
 	
 	public StokKembali() {
 		super();
-	}
-
-	@Id
-	@GeneratedValue
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	@Column(name = "jumlah")
-	public Long getJumlah() {
-		return jumlah;
-	}
-
-	public void setJumlah(Long jumlah) {
-		this.jumlah = jumlah;
-	}
-
-	@ManyToOne
-	@JoinColumn(name = "barang")
-	public Barang getBarang() {
-		return barang;
-	}
-
-	public void setBarang(Barang barang) {
-		this.barang = barang;
-	}
-
-	@Column(name = "tanggal")
-	public Date getTanggal() {
-		return tanggal;
-	}
-
-	public void setTanggal(Date tanggal) {
-		this.tanggal = tanggal;
-	}
-
-	@Column(name = "jam")
-	public Time getJam() {
-		return jam;
-	}
-
-	public void setJam(Time jam) {
-		this.jam = jam;
 	}
 
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}) // Testing

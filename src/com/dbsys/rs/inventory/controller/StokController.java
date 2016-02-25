@@ -17,6 +17,7 @@ import com.dbsys.rs.inventory.service.StokService;
 import com.dbsys.rs.ApplicationException;
 import com.dbsys.rs.EntityRestMessage;
 import com.dbsys.rs.ListEntityRestMessage;
+import com.dbsys.rs.inventory.entity.Stok;
 import com.dbsys.rs.inventory.entity.StokKembali;
 
 @Controller
@@ -28,9 +29,9 @@ public class StokController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseBody
-	public EntityRestMessage<StokKembali> simpan(@RequestBody StokKembali stok) throws ApplicationException, PersistenceException {
+	public EntityRestMessage<Stok> simpan(@RequestBody Stok stok) throws ApplicationException, PersistenceException {
 		stok = stokService.simpan(stok);
-		return new EntityRestMessage<StokKembali>(stok);
+		return new EntityRestMessage<Stok>(stok);
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/pasien/{pasien}")
@@ -52,6 +53,14 @@ public class StokController {
 	public ListEntityRestMessage<StokKembali> getStokKembali(@PathVariable Date awal, @PathVariable Date akhir) throws ApplicationException, PersistenceException {
 		List<StokKembali> list = stokService.getStokKembali(awal, akhir);
 		return new ListEntityRestMessage<StokKembali>(list);
+	}
+	
+
+	@RequestMapping(method = RequestMethod.GET, value = "/{awal}/to/{akhir}")
+	@ResponseBody
+	public ListEntityRestMessage<Stok> getStokMasuk(@PathVariable Date awal, @PathVariable Date akhir) throws ApplicationException, PersistenceException {
+		List<Stok> list = stokService.getStokMasuk(awal, akhir);
+		return new ListEntityRestMessage<Stok>(list);
 	}
 
 }
