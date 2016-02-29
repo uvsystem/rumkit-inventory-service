@@ -37,10 +37,13 @@ public class StokServiceImpl implements StokService {
 			stok.setJam(DateUtil.getTime());
 		
 		Barang barang = stok.getBarang();
-		barang.tambah(stok.getJumlah());
+		if (Stok.JenisStok.MASUK.equals(stok.getJenis())) {
+			barang.tambah(stok.getJumlah());
+		} else {
+			barang.kurang(stok.getJumlah());
+		}
 		
 		barangRepository.save(barang);
-
 		return stokRepository.save(stok);
 	}
 
