@@ -20,11 +20,11 @@ public class StokKembali extends Stok implements CodedEntity {
 	private String nomor;
 	
 	public StokKembali() {
-		super();
+		super("KEMBALI");
 	}
 
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}) // Testing
-	// @ManyToOne(cascade = CascadeType.MERGE)
+	// @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}) // Testing
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "pasien")
 	public Pasien getPasien() {
 		return pasien;

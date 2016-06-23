@@ -18,7 +18,9 @@ import com.dbsys.rs.Kelas;
 import com.dbsys.rs.Tanggungan;
 import com.dbsys.rs.Penanggung;
 import com.dbsys.rs.inventory.entity.Penduduk.Kelamin;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 @Table(name = "pasien")
 public class Pasien implements Tanggungan, CodedEntity {
